@@ -506,21 +506,7 @@ class Home extends Component
 
             $this->userPermissions = $user->permissions->pluck('name');
             $folders = Folder::whereIn('permission_name', $this->userPermissions)->get(); // drawing
-            // $this->parentPermissions = [];
 
-            // permission sama user dibanding sama permission role.
-
-            // foreach ($folders as $folder) {
-            //     while ($folder && $folder->parent) {
-            //         if (!in_array($folder->permission_name, $this->parentPermissions)) {
-            //             $this->parentPermissions[] = $folder->permission_name;
-            //         }
-            //         $folder = $folder->parent;
-            //     }
-            //     if ($folder && !in_array($folder->permission_name, $this->parentPermissions)) {
-            //         $this->parentPermissions[] = $folder->permission_name; // collection
-            //     }
-            // }
             $this->folders = Folder::where('parent_id', $this->folderId)
                 ->orderBy($this->sortBy, $this->sortDir)
                 ->latest()

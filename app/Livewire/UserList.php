@@ -32,6 +32,8 @@ class UserList extends Component
     public $roles = [];
     public $folders = [];
 
+    public $adminRoleId = 1;
+
     // searching usage
     public $search = '';
 
@@ -44,6 +46,14 @@ class UserList extends Component
         $this->roles = Role::all();
         $this->folders = Folder::where('parent_id', null)->with('children')->get();
     }
+
+    public function updatedSelectedRoles()
+    {
+        if (in_array($this->adminRoleId, $this->selectedRoles)) {
+            $this->selectedRoles = [$this->adminRoleId];
+        }
+    }
+
     // when click button delete
     public function selectedItem($id)
     {

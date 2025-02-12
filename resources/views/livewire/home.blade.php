@@ -137,9 +137,11 @@
                 @elseif($this->hasSelectedFiles)
                 <x-home.button type="delete" action="$set('isModalOpen', true)" label="Delete"
                     iconPath="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
+                @role('none');
                 <x-home.button type="download" action="downloadModal({{ $this->hasSelectedFiles }})" label="Download"
                     iconPath="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5m9 8h.01" />
                 @endif
+                @endrole
             </div>
 
             <x-home.searching :search="$search" :searching="$searching" />

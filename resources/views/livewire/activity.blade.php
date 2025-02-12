@@ -13,7 +13,9 @@
             </div>
             <div class="inline-flex">
                 @if($activities->isNotEmpty())
+                @role('Admin')
                 <x-partials.export-button />
+                @endrole
                 <div class="inline-flex items-center space-x-2">
                     <x-partials.show-item />
                 </div>

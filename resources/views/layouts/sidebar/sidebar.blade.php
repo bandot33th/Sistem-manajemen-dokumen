@@ -68,7 +68,7 @@
                         <span class="flex-1">Masterlist</span>
                     </a>
                 </li> --}}
-                @role('Admin')
+                @role('none')
                 <li>
                     <a href="{{ route('passDocs') }}"
                         class="flex items-center p-2 rounded-lg font-medium

@@ -20,10 +20,18 @@ class AddUser extends Component
 
     public $selectedRoles = [];
     public $roles = [];
+    public $adminRoleId = 1;
 
     public function mount() //buat ngambil data di dalam role databae
     {
         $this->roles = Role::all();
+    }
+
+    public function updatedSelectedRoles()
+    {
+        if (in_array($this->adminRoleId, $this->selectedRoles)) {
+            $this->selectedRoles = [$this->adminRoleId];
+        }
     }
 
     public function addUser()
@@ -31,9 +39,8 @@ class AddUser extends Component
         $this->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6',
-            'department' => 'required|string',
-            'selectedRoles' => 'required|array|min:1', // Ensures at least one role is selected
+            'password' => 'required|min:5',
+            'selectedRoles' => 'required|array|min:1',
         ]);
         try {
 

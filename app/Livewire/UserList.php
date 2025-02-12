@@ -119,8 +119,8 @@ class UserList extends Component
     {
         $this->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'selectedRoles' => 'required|array|min:1', // Ensures at least one role is selected
+            'email' => 'required|email',
+            'selectedRoles' => 'required|array|min:1',
         ]);
         try {
             $user = User::find($this->selectedUser);
@@ -147,7 +147,7 @@ class UserList extends Component
                 ->performedOn($user)
                 ->event('Edit')
                 ->withProperties($user->name)
-                ->log(Auth::user()->name . ' Edit selected user');
+                ->log($user->name . ' Edit selected user');
 
             session()->flash('success', 'User updated : ' . Auth::user()->name);
             $this->reset();
